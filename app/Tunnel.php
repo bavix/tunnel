@@ -13,7 +13,7 @@ class Tunnel extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'where_from', 'where_to', 'address',
+        'name', 'where_from', 'where_to', 'address', 'enabled',
     ];
 
     /**
@@ -24,6 +24,7 @@ class Tunnel extends Model
     protected $casts = [
         'where_from' => 'int',
         'where_to' => 'int',
+        'enabled' => 'bool',
     ];
 
 }

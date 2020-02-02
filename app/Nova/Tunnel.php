@@ -57,6 +57,8 @@ class Tunnel extends Resource
             Text::make('Address')
                 ->rules('required', 'max:255'),
 
+            Boolean::make('Reverse'),
+
             Boolean::make('Enabled'),
         ];
     }

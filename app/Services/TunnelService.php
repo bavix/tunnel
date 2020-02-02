@@ -10,7 +10,7 @@ class TunnelService
     /**
      * @param Tunnel $tunnel
      */
-    public function handle(Tunnel $tunnel): void
+    public function init(Tunnel $tunnel): void
     {
         $local = escapeshellcmd("{$tunnel->where_to}:localhost:{$tunnel->where_from}");
         $address = escapeshellcmd($tunnel->address);

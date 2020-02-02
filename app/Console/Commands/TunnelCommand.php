@@ -34,7 +34,7 @@ class TunnelCommand extends Command
          * @var Tunnel $tunnel
          */
         foreach (Tunnel::all() as $tunnel) {
-            app(TunnelService::class)->handle($tunnel);
+            app(TunnelService::class)->init($tunnel);
         }
     }
 

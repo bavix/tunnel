@@ -37,5 +37,4 @@ class TunnelCommand extends Command
             app(TunnelService::class)->init($tunnel);
         }
     }
-
 }

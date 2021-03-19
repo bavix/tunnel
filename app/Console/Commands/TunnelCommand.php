@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
-use App\Tunnel;
+use App\Models\Tunnel;
 use Illuminate\Console\Command;
 use App\Services\TunnelService;
 
@@ -28,7 +30,7 @@ class TunnelCommand extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         /**
          * @var Tunnel $tunnel

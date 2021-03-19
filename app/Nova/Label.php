@@ -5,20 +5,28 @@ declare(strict_types=1);
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Resource;
 
-class Tunnel extends Resource
+/**
+ * Class Label
+ *
+ * @package App\Nova
+ *
+ * @property-read string $description
+ */
+class Label extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static string $model = \App\Models\Tunnel::class;
+    public static string $model = \App\Models\Label::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -33,8 +41,13 @@ class Tunnel extends Resource
      * @var array
      */
     public static array $search = [
-        'id', 'name',
+        'id', 'name', 'description',
     ];
+
+    public function subtitle(): ?string
+    {
+        return $this->description;
+    }
 
     public function fields(Request $request): array
     {
@@ -45,20 +58,19 @@ class Tunnel extends Resource
 
             Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->updateRules('unique:labels,name,{{resourceId}}'),
 
-            Number::make('Where From')
-                ->rules('required'),
-
-            Number::make('Where To')
-                ->rules('required'),
-
-            Text::make('Address')
-                ->rules('required', 'max:255'),
-
-            Boolean::make('Reverse'),
+            Text::make('Description')
+                ->nullable()
+                ->rules('max:255')
+                ->displayUsing(function ($value) {
+                    return Str::words($value, 12, '...');
+                }),
 
             Boolean::make('Enabled'),
+
+            HasMany::make('Ip Addresses', 'IpAddresses'),
         ];
     }
 }

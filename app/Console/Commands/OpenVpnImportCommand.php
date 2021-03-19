@@ -23,7 +23,7 @@ class OpenVpnImportCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Returns a list of routes for openvpn';
+    protected $description = 'Import new routes into openvpn';
 
     /**
      * @param string $mask
@@ -69,8 +69,9 @@ class OpenVpnImportCommand extends Command
 
         while ($line = fgets($handle, 4096)) {
             $line = trim($line);
-            if (strlen($line) === 0) continue;
-            if (substr($line, 0, 1) === '#') continue;
+            if ($line === '' || $line[0] === '#') {
+                continue;
+            }
 
             [$ip, $cidr] = $this->getIpAndNetmaskByString($line);
 

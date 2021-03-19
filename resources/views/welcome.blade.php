@@ -32,7 +32,7 @@
                         @foreach($labels as $label)
                             <tr>
                                 <th>{{ $label->id }}</th>
-                                <td><a href="http://{{$label->name}}">{{ $label->name }}</a></td>
+                                <td><a href="http://{{$label->name}}" target="_blank" rel="nofollow noopener">{{ $label->name }}</a></td>
                                 <td>{{ $label->description }}</td>
                             </tr>
                         @endforeach

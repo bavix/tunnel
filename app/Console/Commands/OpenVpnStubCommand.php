@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Models\Label;
 use Exception;
 use Illuminate\Console\Command;
 

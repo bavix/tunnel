@@ -11,4 +11,6 @@
 |
 */
 
-Route::view('/', 'welcome');
+use App\Http\Controllers\WelcomeController;
+
+Route::get('/', [WelcomeController::class, 'index']);

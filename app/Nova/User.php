@@ -11,6 +11,13 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Resource;
 
+/**
+ * Class User
+ *
+ * @package App\Nova
+ *
+ * @property-read string $name
+ */
 class User extends Resource
 {
     /**
@@ -21,13 +28,6 @@ class User extends Resource
     public static string $model = \App\Models\User::class;
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static string $title = 'name';
-
-    /**
      * The columns that should be searched.
      *
      * @var array
@@ -35,6 +35,11 @@ class User extends Resource
     public static array $search = [
         'id', 'name', 'email',
     ];
+
+    public function title(): string
+    {
+        return $this->name;
+    }
 
     public function fields(Request $request): array
     {

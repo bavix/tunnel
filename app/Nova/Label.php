@@ -17,6 +17,7 @@ use Laravel\Nova\Resource;
  *
  * @package App\Nova
  *
+ * @property-read string $name
  * @property-read string $description
  */
 class Label extends Resource
@@ -29,13 +30,6 @@ class Label extends Resource
     public static string $model = \App\Models\Label::class;
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static string $title = 'name';
-
-    /**
      * The columns that should be searched.
      *
      * @var array
@@ -43,6 +37,11 @@ class Label extends Resource
     public static array $search = [
         'id', 'name', 'description',
     ];
+
+    public function title(): string
+    {
+        return $this->name;
+    }
 
     public function subtitle(): ?string
     {

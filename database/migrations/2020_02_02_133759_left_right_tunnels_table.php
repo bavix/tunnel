@@ -12,7 +12,7 @@ class LeftRightTunnelsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('tunnels', static function (Blueprint $table) {
             $table->boolean('reverse')->default(1);
@@ -24,7 +24,7 @@ class LeftRightTunnelsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('tunnels', static function (Blueprint $table) {
             $table->dropColumn('reverse');

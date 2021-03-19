@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
-use App\Tunnel;
+use App\Models\Tunnel;
 
 class TunnelService
 {
-
     /**
      * @param Tunnel $tunnel
      */
@@ -22,5 +23,4 @@ class TunnelService
 
         @exec('autossh -M ' . (20000 + $tunnel->getKey()) . ' -f -N ' . $address . $option . $local . ' -C', $output);
     }
-
 }

@@ -46,7 +46,7 @@ class Label extends Model
      * @var array
      */
     protected $casts = [
-        'enabled' => 'int',
+        'enabled' => 'bool',
     ];
 
     public function ipAddresses(): HasMany

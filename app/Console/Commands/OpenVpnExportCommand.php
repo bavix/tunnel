@@ -31,10 +31,12 @@ class OpenVpnExportCommand extends Command
     public function handle(): void
     {
         /** @var Label $label */
-        foreach (Label::with('ipAddresses')->cursor() as $label) {
+        foreach (Label::whereEnabled(true)->with('ipAddresses')->cursor() as $label) {
             echo '# ', $label->name, PHP_EOL;
             foreach ($label->ipAddresses as $ipAddress) {
-                echo sprintf('push "route %s %s"', $ipAddress->address, $ipAddress->subnet), PHP_EOL;
+                if ($ipAddress->enabled) {
+                    echo sprintf('push "route %s %s"', $ipAddress->address, $ipAddress->subnet), PHP_EOL;
+                }
             }
 
             echo PHP_EOL;

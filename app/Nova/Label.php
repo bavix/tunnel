@@ -70,6 +70,7 @@ class Label extends Resource
             Boolean::make('Enabled'),
 
             HasMany::make('Ip Addresses', 'IpAddresses'),
+            HasMany::make('ASNs', 'Asns'),
         ];
     }
 }

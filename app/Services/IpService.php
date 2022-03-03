@@ -11,7 +11,7 @@ class IpService
 {
     public function subnet(string $range): string
     {
-        $rangeObject = Factory::rangeFromString($range);
+        $rangeObject = Factory::parseRangeString($range);
 
         if ($rangeObject === null) {
             throw new InvalidArgumentException('Range is null');

@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Label whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Label whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Asn[] $asns
+ * @property-read int|null $asns_count
  */
 class Label extends Model
 {
@@ -52,5 +54,10 @@ class Label extends Model
     public function ipAddresses(): HasMany
     {
         return $this->hasMany(IpAddress::class);
+    }
+
+    public function asns(): HasMany
+    {
+        return $this->hasMany(Asn::class);
     }
 }

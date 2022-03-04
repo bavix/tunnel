@@ -62,7 +62,7 @@ class AsnCommand extends Command
             echo 'Add new AS' . $asnId, PHP_EOL;
 
             $asnList[] = 'AS' . $asnId;
-            $label->asns()->create(['value' => 'AS' . $asnId]);
+            $label->asns()->create(['value' => 'AS' . $asnId, 'enabled' => true]);
         }
     }
 }
